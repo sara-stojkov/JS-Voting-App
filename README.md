@@ -36,6 +36,8 @@ The Data Base used for storing the jokes, their number of votes and ID is MongoD
 
 ### Running the App
 
+Make sure you run **npm install**.
+
 1. Firstly, you need to run MongoDB using the command
    ***mongod***
 2. Then you should run the backend by entering the backend folder and typing
