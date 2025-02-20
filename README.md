@@ -25,3 +25,6 @@ The full documentation can be found [here](https://dataartcom-my.sharepoint.com/
 
 
 ### Implementation
+
+![image](https://github.com/user-attachments/assets/04ea6cbd-5871-4ed3-98e9-f4c2fb9174f8)
+
