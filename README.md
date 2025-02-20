@@ -27,8 +27,24 @@ The full documentation can be found [here](https://dataartcom-my.sharepoint.com/
 
 ### Implementation
 
+This is a React App that uses it for the front and running and hosting the app, but also Node.js is the thing that binds everything together. 
+
+The Data Base used for storing the jokes, their number of votes and ID is MongoDB, which is a requirement to install before running the app. Personally, I used the MongoDB shell (as you can see in the picture) to check if the App worked properly.
+
 ![image](https://github.com/user-attachments/assets/6275e9fc-f886-4647-b000-4e48c2176cf0)
 ![image](https://github.com/user-attachments/assets/1ae84e1a-eff5-4b8a-b52f-f4f66593d619)
+
+### Running the App
+
+1. Firstly, you need to run MongoDB using the command
+   ***mongod***
+2. Then you should run the backend by entering the backend folder and typing
+  ***npm start***
+3. Finally, you run the frontend by entering the folder where _package.json_ is and also type
+   ***npm start***
+
+
+In case _npm start_ isn't working, try _npm install_ in both these folders.
 
 
 
