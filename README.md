@@ -22,9 +22,13 @@ The full documentation can be found [here](https://dataartcom-my.sharepoint.com/
 - React
 - JavaScript
 - [Teehee Joke API](https://www.freepublicapis.com/teehee-joke-api)
+- MongoDB
 
 
 ### Implementation
 
 ![image](https://github.com/user-attachments/assets/6275e9fc-f886-4647-b000-4e48c2176cf0)
+![image](https://github.com/user-attachments/assets/1ae84e1a-eff5-4b8a-b52f-f4f66593d619)
+
+
 
