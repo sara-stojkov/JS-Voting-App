@@ -1,53 +1,37 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+// backend/server.js
+const express = require("express");
+const mongoose = require("mongoose");
+const Joke = require("./models/Joke");
 
 const app = express();
+app.use(express.json());
 
-app.use(express.json()); 
-app.use(cors()); 
+const cors = require("cors");
+app.use(cors({ origin: "http://localhost:3000" }));
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/voting-game';
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('✅ Connected to MongoDB'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Voting Game API!');
+mongoose.connect("mongodb://127.0.0.1:27017/voting-game", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.error("MongoDB connection error:", err));
+
+// Endpoint to store joke votes
+app.post("/api/joke/vote", async (req, res) => {
+  const { jokeId, question, answer, likes, mehs, dislikes } = req.body;
+
+  try {
+    const joke = await Joke.findOneAndUpdate(
+      { jokeId },
+      { question, answer, likes, mehs, dislikes },
+      { upsert: true, new: true }
+    );
+    res.json(joke);
+  } catch (error) {
+    console.error("Failed to save vote:", error);
+    res.status(500).json({ message: "Failed to save vote" });
+  }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-});
-
-app.get('/api/joke', async (req, res) => {
-    try {
-      const response = await fetch('https://www.freepublicapis.com/teehee-joke-api');
-      if (!response.ok) {
-        throw new Error('Failed to fetch joke from TeeHee API');
-      }
-      const data = await response.json();
-  
-      
-      const joke = {
-        id: data.id || Date.now().toString(), 
-        question: data.setup || data.question || "No question provided",
-        answer: data.punchline || data.answer || "No answer provided",
-        votes: [
-          { value: 0, label: "😂" },
-          { value: 0, label: "👍" },
-          { value: 0, label: "❤️" }
-        ],
-        availableVotes: ["😂", "👍", "❤️"]
-      };
-    
-      res.json(joke);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to fetch joke from TeeHee API' });
-    }
-  });
+app.listen(5000, () => console.log("Server running on port 5000"));
